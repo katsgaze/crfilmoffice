@@ -663,7 +663,7 @@ div.controls {
 }
 
 .padding-onlybottom-lg {
-  padding-bottom: 180px !important;
+  padding-bottom: 140px !important;
 }
 
 @media screen and (max-width: 480px) {
@@ -888,7 +888,7 @@ div.controls {
 }
 
 .row-title h2 {
-  font-size: 36px;
+  font-size: 34px;
   line-height: 40px;
 }
 
@@ -1334,6 +1334,8 @@ div.controls {
   #main-wrap .flexslider {
     width: 100%;
     position: relative;
+	margin: 0;
+	padding: 0;
   }
 }
 
