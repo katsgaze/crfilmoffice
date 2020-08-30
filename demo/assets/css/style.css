@@ -309,8 +309,8 @@ a.btn.contact {
   padding: 0;
   padding-right: 15px;
   padding-left: 15px;
-  height: 55px;
-  line-height: 53px;
+  height: 33px;
+  line-height: 30px;
   text-align: center;
   font-size: 10px;
   letter-spacing: 2px;
@@ -325,8 +325,8 @@ a.btn.contact {
   color: #333;
   position: relative;
   margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 35px;
+  margin-left: 0px;
+  margin-bottom: 10px;
   text-decoration: none !important;
 }
 
