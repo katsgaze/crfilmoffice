@@ -1,7 +1,6 @@
 
 var $ = jQuery.noConflict();
 
-
 (function($) {
     "use strict";
 
@@ -51,23 +50,106 @@ var $ = jQuery.noConflict();
             $('#menu').toggleClass('open');
             $('#menu').removeClass('animated slideInRight');
         });
+
+    } catch(err) {
+
+    }
+    /*-------------------------------------------------*/
+    /* =  Slider
+    /*-------------------------------------------------*/
+    try {
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "fade",
+                controlNav: false,
+                useCSS: false,
+                start: function(){
+                    $('.slides').show();
+                }
+            });
+        });
     } catch(err) {
 
     }
     /*-------------------------------------------------*/
     /* =  Instafeed
     /*-------------------------------------------------*/
-    var settings = {"accessToken":"", "userId":"1661129930"}; //Add your access token and the instagram user id to show the profile. AccessToken to test 393402381.1677ed0.d26e74eb93b04d9b8b729cdf097c3f55
+    var settings = {"accessToken":"", "userId":""}; //Add your access token and the instagram user id to show the profile. AccessToken to test 393402381.1677ed0.d26e74eb93b04d9b8b729cdf097c3f55
     try {
         var userFeed = new Instafeed({
             get: 'user',
             userId: settings.userId,
             accessToken: settings.accessToken,
             resolution: 'standard_resolution',
-            limit: 4,
-            template: '<li class="col-sm-3 col-xs-6"><a href="{{link}}" target="_blank" class="image"><img src="{{image}}" /><span class="caption">{{caption}}</span><span class="logo"><i class="icon ion-social-instagram"></i></span></a></li>'
+            limit: 6,
+            template: '<li class="col-sm-2 col-xs-4"><a href="{{link}}" target="_blank" class="image"><img src="{{image}}" /></a></li>'
         });
         userFeed.run();
+    } catch(err) {
+
+    }
+    /*-------------------------------------------------*/
+    /* =  Isotope
+    /*-------------------------------------------------*/
+    try {
+        var $mainContainer=$('.works-items');
+        $mainContainer.imagesLoaded( function(){
+
+            var $container=$('.works-items').isotope({itemSelector:'.one-item'});
+
+            $('#works .filters').on('click','li',function(){
+                var filterValue=$(this).attr('data-filter');$container.isotope({
+                    filter:filterValue});
+            });
+            $('#works .filters').each(function(i,buttonGroup){
+                var $buttonGroup=$(buttonGroup);
+                $buttonGroup.on('click','li',function(){
+                    $buttonGroup.find('.is-checked').removeClass('is-checked');
+                    $(this).addClass('is-checked');
+                });
+            });
+            
+        });
+    } catch(err) {
+
+    }
+    //portfolio with border
+    try {
+        var $mainContainerBorder=$('.works-items.border');
+        $mainContainerBorder.imagesLoaded( function(){
+
+            var $container=$('.works-items.border').isotope({
+                itemSelector:'.one-item',
+                layoutMode: 'masonry',
+                masonry: {
+                    columnWidth: '.one-item',
+                    gutter: 30
+                },
+                percentPosition: true
+            });
+
+            $('#works .filters').on('click','li',function(){
+                var filterValue=$(this).attr('data-filter');$container.isotope({
+                    filter:filterValue});
+            });
+            $('#works .filters').each(function(i,buttonGroup){
+                var $buttonGroup=$(buttonGroup);
+                $buttonGroup.on('click','li',function(){
+                    $buttonGroup.find('.is-checked').removeClass('is-checked');
+                    $(this).addClass('is-checked');
+                });
+            });
+            
+        });
+    } catch(err) {
+
+    }
+    //blog masonry
+    try {
+        var $blogContainer = $('.masonry-grid');
+        $blogContainer.imagesLoaded( function(){
+            $blogContainer.isotope({itemSelector: '.masonry-item', layoutMode: 'masonry'});
+        });
     } catch(err) {
 
     }
@@ -89,9 +171,10 @@ var $ = jQuery.noConflict();
                     beforeClose:function() {
                         $("body").css({"margin-right":"0"});
                     }
-                }
+                },		
             });
         });
+				
         $('.popup-youtube, .popup-vimeo, .popup-gmaps, .popup-video').magnificPopup({
             type: 'iframe',
             mainClass: 'mfp-fade',
@@ -121,11 +204,10 @@ var $ = jQuery.noConflict();
     /*-------------------------------------------------*/
     /* =  Contact Form
     /*-------------------------------------------------*/
-
     var submitContact = $('#submit-contact'),
         message = $('#msg');
 
-    submitContact.on("click",function(e){
+    submitContact.on('click', function(e){
         e.preventDefault();
 
         var $this = $(this);
@@ -147,53 +229,12 @@ var $ = jQuery.noConflict();
             }
         });
     });
-    /*-------------------------------------------------*/
-    /* =  Isotope
-    /*-------------------------------------------------*/
-    try {
-        var $mainContainer=$('.works-items');
-        $mainContainer.imagesLoaded( function(){
 
-                var $container=$('.works-items').isotope({itemSelector:'.one-item'});
-
-                $('#works .filters').on('click','li',function(){
-                    var filterValue=$(this).attr('data-filter');$container.isotope({
-                        filter:filterValue});
-                });
-                $('#works .filters').each(function(i,buttonGroup){
-                    var $buttonGroup=$(buttonGroup);
-                    $buttonGroup.on('click','li',function(){
-                        $buttonGroup.find('.is-checked').removeClass('is-checked');
-                        $(this).addClass('is-checked');
-                    });
-                });
-            
-        });
-    } catch(err) {
-
-    }
-    /*-------------------------------------------------*/
-    /* =  Slider
-    /*-------------------------------------------------*/
-    try {
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "fade",
-                controlNav: false,
-                useCSS: false,
-                start: function(){
-                    $('.slides').show();
-                }
-            });
-        });
-    } catch(err) {
-
-    }
 })(jQuery);
 
 $(document).ready(function($) {
     "use strict";
-
+    
     /*-------------------------------------------------*/
     /* =  Carousel
     /*-------------------------------------------------*/
