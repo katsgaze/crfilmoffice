@@ -92,16 +92,16 @@ var $ = jQuery.noConflict();
     /* =  Isotope
     /*-------------------------------------------------*/
     try {
-        var $mainContainer=$('.works-items');
+        var $mainContainer=$('.localizaciones-items');
         $mainContainer.imagesLoaded( function(){
 
-            var $container=$('.works-items').isotope({itemSelector:'.one-item'});
+            var $container=$('.localizaciones-items').isotope({itemSelector:'.one-item'});
 
-            $('#works .filters').on('click','li',function(){
+            $('#localizaciones .filters').on('click','li',function(){
                 var filterValue=$(this).attr('data-filter');$container.isotope({
                     filter:filterValue});
             });
-            $('#works .filters').each(function(i,buttonGroup){
+            $('#localizaciones .filters').each(function(i,buttonGroup){
                 var $buttonGroup=$(buttonGroup);
                 $buttonGroup.on('click','li',function(){
                     $buttonGroup.find('.is-checked').removeClass('is-checked');
@@ -115,10 +115,10 @@ var $ = jQuery.noConflict();
     }
     //portfolio with border
     try {
-        var $mainContainerBorder=$('.works-items.border');
+        var $mainContainerBorder=$('.localizaciones-items.border');
         $mainContainerBorder.imagesLoaded( function(){
 
-            var $container=$('.works-items.border').isotope({
+            var $container=$('.localizaciones-items.border').isotope({
                 itemSelector:'.one-item',
                 layoutMode: 'masonry',
                 masonry: {
@@ -128,11 +128,11 @@ var $ = jQuery.noConflict();
                 percentPosition: true
             });
 
-            $('#works .filters').on('click','li',function(){
+            $('#localizaciones .filters').on('click','li',function(){
                 var filterValue=$(this).attr('data-filter');$container.isotope({
                     filter:filterValue});
             });
-            $('#works .filters').each(function(i,buttonGroup){
+            $('#localizaciones .filters').each(function(i,buttonGroup){
                 var $buttonGroup=$(buttonGroup);
                 $buttonGroup.on('click','li',function(){
                     $buttonGroup.find('.is-checked').removeClass('is-checked');
@@ -157,7 +157,7 @@ var $ = jQuery.noConflict();
     /* =  Magnific popup
     /*-------------------------------------------------*/
     try {
-        $('.works-items').each(function() { // the containers for all your galleries
+        $('.localizaciones-items').each(function() { // the containers for all your galleries
             $(this).magnificPopup({
                 delegate: '.lightbox',
                 type: 'image',
