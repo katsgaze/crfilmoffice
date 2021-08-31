@@ -1952,8 +1952,8 @@ div.controls {
 }
 
 #main-wrap #bottom-wrap #localizaciones .localizaciones-items .one-item:hover:after {
-  opacity: 0.9;
-  transition: opacity 0.5s ease;
+  opacity: 0.6;
+  transition: opacity 1.5s ease;
 }
 
 #main-wrap #bottom-wrap #localizaciones .localizaciones-items .one-item:after {
