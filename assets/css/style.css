@@ -3095,25 +3095,118 @@ div.controls {
 }
 
 /*-------------------------------------------------*/
+/* = YouTube lazy load
+/*-------------------------------------------------*/
+
+.youtube-lazy {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    margin: 50px 0;
+}
+
+.youtube-lazy-play {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.youtube-lazy-play img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.youtube-lazy-play::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    transition: background 0.4s ease;
+}
+
+.youtube-lazy-icon {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+}
+
+.youtube-lazy-icon::after {
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: 18px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 18px solid #fff;
+}
+
+.youtube-lazy-play:hover::before {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.youtube-lazy-play:hover img {
+    transform: scale(1.02);
+}
+
+.youtube-lazy-play:hover .youtube-lazy-icon {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.youtube-lazy iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/*-------------------------------------------------*/
 /* = YouTube lazy load - responsive
 /*-------------------------------------------------*/
 
 @media screen and (max-width: 767px) {
-  .youtube-lazy {
-    height: 200px;
-    margin: 40px auto;
-  }
 
-  .youtube-lazy-icon {
-    width: 54px;
-    height: 54px;
-  }
+    .youtube-lazy {
+        height: 160px;
+        margin: 40px 0;
+    }
 
-  .youtube-lazy-icon:after {
-    left: 21px;
-    top: 15px;
-    border-top-width: 11px;
-    border-bottom-width: 11px;
-    border-left-width: 16px;
-  }
+    .youtube-lazy-icon {
+        width: 54px;
+        height: 54px;
+    }
+
+    .youtube-lazy-icon::after {
+        left: 21px;
+        top: 15px;
+        border-top-width: 11px;
+        border-bottom-width: 11px;
+        border-left-width: 16px;
+    }
+
 }
