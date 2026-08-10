@@ -2914,72 +2914,49 @@ div.controls {
 /* = Mobile layout corrections
 /*-------------------------------------------------*/
 @media screen and (max-width: 767px) {
-  /* Page title bands: let the black header grow with the text. */
-  #main-wrap #text-header {
-    height: auto;
-    min-height: 260px;
-    margin-top: -50vh;
-    padding: 90px 0 70px;
-  }
 
-  #main-wrap #text-header .container {
-    top: auto;
-    -webkit-transform: none;
-        -ms-transform: none;
-            transform: none;
-  }
-
-  #main-wrap #text-header .container .content {
-    padding: 0 15px;
-  }
-
-  #main-wrap #text-header .container .content h1.big {
-    font-size: 40px;
-    line-height: 1.05;
-    overflow-wrap: anywhere;
-    word-break: normal;
-  }
-
-  #main-wrap #text-header .container .content h2 {
-    font-size: 13px;
-    line-height: 1.8;
-    overflow-wrap: anywhere;
-  }
-
+  /* Rodar en Ciudad Real */
   #main-wrap #bottom-wrap #ciudadreal .row-title {
     max-width: none;
-    min-height: 0 !important;
-    height: auto !important;
+    min-height: 0;
+    width: 100%;
     margin: 0 auto;
-    padding: 25px 15px 30px;
+    padding: 0 15px 25px;
     text-align: center;
     box-sizing: border-box;
   }
 
   #main-wrap #bottom-wrap #ciudadreal .row-title h2 {
     margin-bottom: 0;
-    padding-bottom: 0 !important;
   }
 
   #main-wrap #bottom-wrap #ciudadreal .row-title p {
     position: static;
+    width: 100%;
+    max-width: 100%;
     padding: 20px 0 0;
     margin: 0;
+    box-sizing: border-box;
   }
 
+  /* Evita que los textos largos generen desbordamientos */
+  #main-wrap #bottom-wrap #ciudadreal p,
+  #main-wrap #bottom-wrap #ciudadreal h2 {
+    max-width: 100%;
+  }
+
+  /* Localizaciones */
   #main-wrap #bottom-wrap #localizaciones .localizaciones-header {
+    width: 100%;
     margin-bottom: 35px;
     padding: 30px 15px;
     box-sizing: border-box;
   }
 
   #main-wrap #bottom-wrap #localizaciones .localizaciones-header h2 {
-    margin: 0;
-    padding: 10px 0;
-    font-size: 30px !important;
-    line-height: 1.1;
-    overflow-wrap: anywhere;
-    word-break: normal;
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 1.2;
   }
 }
 
