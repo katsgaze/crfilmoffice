@@ -3113,3 +3113,39 @@ div.controls {
     font-size: 9px;
   }
 }
+
+/*-------------------------------------------------*/
+/* =  Responsive fixes — index
+/*-------------------------------------------------*/
+
+@media screen and (max-width: 767px) {
+
+  #main-wrap #bottom-wrap #localizaciones .localizaciones-header {
+    padding: 32px 15px;
+  }
+
+  #main-wrap #bottom-wrap #localizaciones .localizaciones-header h2 {
+    font-size: 26px;
+    line-height: 1.15;
+    padding: 10px 0;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  #main-wrap #bottom-wrap #ciudadreal {
+    height: auto;
+    min-height: 0;
+  }
+
+  #main-wrap #bottom-wrap #ciudadreal .row {
+    height: auto;
+  }
+
+  #main-wrap #bottom-wrap #ciudadreal .col-md-4,
+  #main-wrap #bottom-wrap #ciudadreal .col-md-8 {
+    height: auto;
+    min-height: 0;
+  }
+
+}
