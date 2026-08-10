@@ -2860,55 +2860,6 @@ div.controls {
   display: block;
 }
 
-/*-------------------------------------------------*/
-/* = Gallery layout: Isotope items
-/*-------------------------------------------------*/
-#main-wrap #bottom-wrap #localizaciones .localizaciones-items {
-  position: relative;
-  overflow: visible;
-}
-
-#main-wrap #bottom-wrap #localizaciones .localizaciones-items > a.grid-item {
-  display: block;
-  position: absolute;
-  text-decoration: none;
-  color: inherit;
-}
-
-#main-wrap #bottom-wrap #localizaciones .localizaciones-items > a.grid-item > .one-item {
-  width: 100% !important;
-}
-
-#main-wrap #bottom-wrap #localizaciones .localizaciones-items.border.three-columns > a.grid-item {
-  width: calc(33.33333333% - 20px);
-  margin-bottom: 30px;
-}
-
-#main-wrap #bottom-wrap #localizaciones .localizaciones-items.border.four-columns > a.grid-item {
-  width: calc(25% - 23px);
-  margin-bottom: 30px;
-}
-
-@media screen and (max-width: 1199px) {
-  #main-wrap #bottom-wrap #localizaciones .localizaciones-items.border.four-columns > a.grid-item {
-    width: calc(33.33333333% - 20px);
-  }
-}
-
-@media screen and (max-width: 991px) {
-  #main-wrap #bottom-wrap #localizaciones .localizaciones-items.border.three-columns > a.grid-item,
-  #main-wrap #bottom-wrap #localizaciones .localizaciones-items.border.four-columns > a.grid-item {
-    width: calc(50% - 15px);
-  }
-}
-
-@media screen and (max-width: 767px) {
-  #main-wrap #bottom-wrap #localizaciones .localizaciones-items.border.three-columns > a.grid-item,
-  #main-wrap #bottom-wrap #localizaciones .localizaciones-items.border.four-columns > a.grid-item {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-}
 
 /*-------------------------------------------------*/
 /* = Mobile layout corrections
@@ -3115,37 +3066,11 @@ div.controls {
 }
 
 /*-------------------------------------------------*/
-/* =  Responsive fixes — index
+/* = Localizaciones: galerías cuadradas
 /*-------------------------------------------------*/
 
-@media screen and (max-width: 767px) {
-
-  #main-wrap #bottom-wrap #localizaciones .localizaciones-header {
-    padding: 32px 15px;
-  }
-
-  #main-wrap #bottom-wrap #localizaciones .localizaciones-header h2 {
-    font-size: 26px;
-    line-height: 1.15;
-    padding: 10px 0;
-    white-space: normal;
-    word-break: normal;
-    overflow-wrap: normal;
-  }
-
-  #main-wrap #bottom-wrap #ciudadreal {
+#main-wrap #bottom-wrap #localizaciones .localizaciones-items .one-item img {
+    width: 100%;
     height: auto;
-    min-height: 0;
-  }
-
-  #main-wrap #bottom-wrap #ciudadreal .row {
-    height: auto;
-  }
-
-  #main-wrap #bottom-wrap #ciudadreal .col-md-4,
-  #main-wrap #bottom-wrap #ciudadreal .col-md-8 {
-    height: auto;
-    min-height: 0;
-  }
-
+    display: block;
 }
