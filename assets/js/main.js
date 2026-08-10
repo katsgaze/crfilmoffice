@@ -53,7 +53,6 @@ $("button.close-menu").on("click", function () {
     }, 1000);
 });
 
-// Close the menu when a normal navigation link is selected.
 $(".menu-holder ul > li:not(.submenu) > a").on("click", function () {
     $("#menu").removeClass("open animated slideInRight");
 });
@@ -80,30 +79,57 @@ if ($.fn.flexslider && $(".flexslider").length) {
 var $localizaciones = $(".localizaciones-items");
 
 if ($.fn.imagesLoaded && $.fn.isotope && $localizaciones.length) {
-    $localizaciones.imagesLoaded(function () {
-        var $container = $localizaciones.isotope({
-            itemSelector: ".one-item",
-            layoutMode: "masonry",
-            masonry: {
-                columnWidth: ".one-item",
-                gutter: 30
-            },
-            percentPosition: true
+    $localizaciones.each(function () {
+        var $gallery = $(this);
+        var $links = $gallery.children("a");
+
+        // Isotope must position the direct gallery links, not the nested
+        // .one-item elements. Positioning the nested elements was causing
+        // zero-height links, stray overlays and broken click areas.
+        $links.each(function () {
+            var $link = $(this);
+            var itemClasses = $link.children(".one-item").attr("class") || "";
+            itemClasses = itemClasses.replace(/\bone-item\b/g, "").trim();
+            if (itemClasses) {
+                $link.addClass(itemClasses);
+            }
+            $link.addClass("grid-item");
         });
 
-        $("#localizaciones .filters").on("click", "li", function () {
-            var $filter = $(this);
-
-            $container.isotope({
-                filter: $filter.attr("data-filter")
+        $gallery.imagesLoaded(function () {
+            var $container = $gallery.isotope({
+                itemSelector: ".grid-item",
+                layoutMode: "masonry",
+                masonry: {
+                    columnWidth: ".grid-item",
+                    gutter: 30
+                },
+                percentPosition: true
             });
 
-            $filter
-                .closest(".filters")
-                .find(".is-checked")
-                .removeClass("is-checked");
+            // Recalculate the masonry geometry after responsive width changes.
+            var resizeTimer;
+            $(window).on("resize.crfoGallery", function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    $container.isotope("layout");
+                }, 120);
+            });
 
-            $filter.addClass("is-checked");
+            $gallery.closest("#localizaciones").find(".filters").on("click", "li", function () {
+                var $filter = $(this);
+
+                $container.isotope({
+                    filter: $filter.attr("data-filter")
+                });
+
+                $filter
+                    .closest(".filters")
+                    .find(".is-checked")
+                    .removeClass("is-checked");
+
+                $filter.addClass("is-checked");
+            });
         });
     });
 }
@@ -137,15 +163,16 @@ if ($.fn.magnificPopup) {
 $(".youtube-lazy-play").on("click", function () {
     var $button = $(this);
     var $video = $button.closest(".youtube-lazy");
-    var videoId = $video.data("youtube-id");
+    var videoId = $video.attr("data-youtube-id");
 
-    if (!videoId) {
+    if (!videoId || $video.find("iframe").length) {
         return;
     }
 
     var $iframe = $("<iframe>", {
-        class: "embed-responsive-item",
-        src: "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1",
+        class: "youtube-lazy-frame",
+        src: "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(videoId) + "?autoplay=1&rel=0",
+        title: "Vídeo de YouTube",
         allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
         allowfullscreen: true,
         referrerpolicy: "strict-origin-when-cross-origin"
@@ -165,16 +192,9 @@ if ($.fn.owlCarousel && $(".sponsor-carousel").length) {
         autoplayTimeout: 3000,
         responsiveClass: true,
         responsive: {
-            0: {
-                items: 2
-            },
-            600: {
-                items: 2
-            },
-            1000: {
-                items: 4,
-                loop: true
-            }
+            0: { items: 2 },
+            600: { items: 2 },
+            1000: { items: 4, loop: true }
         }
     });
 }
