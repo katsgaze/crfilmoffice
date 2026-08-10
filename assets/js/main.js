@@ -73,116 +73,114 @@ if ($.fn.flexslider && $(".flexslider").length) {
     });
 }
 
-    /*-------------------------------------------------*/
-    /* =  Isotope
-    /*-------------------------------------------------*/
-    try {
-        var $mainContainer=$('.localizaciones-items:not(.border)');
-        $mainContainer.imagesLoaded( function(){
+/*-------------------------------------------------*/
+/* = Isotope
+/*-------------------------------------------------*/
 
-            var $container=$mainContainer.isotope({
-                itemSelector:'.one-item'
-            });
+try {
+    $('.localizaciones-items').each(function() {
 
-            $('#localizaciones .filters').on('click','li',function(){
-                var filterValue=$(this).attr('data-filter');
+        var $mainContainer = $(this);
+
+        $mainContainer.imagesLoaded(function() {
+
+            /* 
+             * El enlace <a> es la tarjeta real de la galería.
+             * Le damos una clase específica para que Isotope
+             * posicione el elemento completo, no el .one-item interior.
+             */
+            $mainContainer.children('a').addClass('grid-item');
+
+            var options = {
+                itemSelector: '.grid-item',
+                layoutMode: 'masonry',
+                masonry: {
+                    columnWidth: '.grid-item',
+                    gutter: 30
+                },
+                percentPosition: true
+            };
+
+            var $container = $mainContainer.isotope(options);
+
+            /* Filtros: solo se aplican a la galería que corresponde */
+            $mainContainer.closest('#localizaciones').find('.filters').on('click', 'li', function() {
+                var filterValue = $(this).attr('data-filter');
+
                 $container.isotope({
-                    filter:filterValue
+                    filter: filterValue
                 });
             });
 
-            $('#localizaciones .filters').each(function(i,buttonGroup){
-                var $buttonGroup=$(buttonGroup);
-                $buttonGroup.on('click','li',function(){
+            /* Estado visual de los filtros */
+            $mainContainer.closest('#localizaciones').find('.filters').each(function(i, buttonGroup) {
+                var $buttonGroup = $(buttonGroup);
+
+                $buttonGroup.on('click', 'li', function() {
                     $buttonGroup.find('.is-checked').removeClass('is-checked');
                     $(this).addClass('is-checked');
                 });
             });
-        
+
         });
-    } catch(err) {
 
-    }
+    });
 
-    // portfolio with border
-    try {
-        var $mainContainerBorder=$('.localizaciones-items.border');
-        $mainContainerBorder.imagesLoaded( function(){
+} catch(err) {
 
-            var $container=$mainContainerBorder.isotope({
-                itemSelector:'.one-item',
-                layoutMode:'masonry',
-                masonry:{
-                    columnWidth:'.one-item',
-                    gutter:30
+}
+
+
+/*-------------------------------------------------*/
+/* = Blog masonry
+/*-------------------------------------------------*/
+
+try {
+    var $blogContainer = $('.masonry-grid');
+
+    $blogContainer.imagesLoaded(function() {
+        $blogContainer.isotope({
+            itemSelector: '.masonry-item',
+            layoutMode: 'masonry'
+        });
+    });
+
+} catch(err) {
+
+}
+
+/*-------------------------------------------------*/
+/* =  Magnific popup
+/*-------------------------------------------------*/
+try {
+    $('.localizaciones-items').each(function() { // the containers for all your galleries
+        $(this).magnificPopup({
+            delegate: '.lightbox',
+            type: 'image',
+            gallery: {
+                enabled:true
+            },
+            callbacks:{
+                beforeOpen:function(){
+                    $("body").css({"margin-right":"-17px"})
                 },
-                percentPosition:true
-            });
-
-            $('#localizaciones .filters').on('click','li',function(){
-                var filterValue=$(this).attr('data-filter');
-                $container.isotope({
-                    filter:filterValue
-                });
-            });
-
-            $('#localizaciones .filters').each(function(i,buttonGroup){
-                var $buttonGroup=$(buttonGroup);
-                $buttonGroup.on('click','li',function(){
-                    $buttonGroup.find('.is-checked').removeClass('is-checked');
-                    $(this).addClass('is-checked');
-                });
-            });
-        
+                beforeClose:function() {
+                    $("body").css({"margin-right":"0"});
+                }
+            },		
         });
-    } catch(err) {
-
-    }
-
-    // blog masonry
-    try {
-        var $blogContainer = $('.masonry-grid');
-        $blogContainer.imagesLoaded( function(){
-            $blogContainer.isotope({
-                itemSelector:'.masonry-item',
-                layoutMode:'masonry'
-            });
-        });
-    } catch(err) {
-
-    }
-    /*-------------------------------------------------*/
-    /* =  Magnific popup
-    /*-------------------------------------------------*/
-    try {
-        $('.localizaciones-items').each(function() { // the containers for all your galleries
-            $(this).magnificPopup({
-                delegate: '.lightbox',
-                type: 'image',
-                gallery: {
-                    enabled:true
-                },
-                callbacks:{
-                    beforeOpen:function(){
-                        $("body").css({"margin-right":"-17px"})
-                    },
-                    beforeClose:function() {
-                        $("body").css({"margin-right":"0"});
-                    }
-                },		
-            });
-        });
+    });
 				
-        $('.popup-youtube, .popup-vimeo, .popup-gmaps, .popup-video').magnificPopup({
-            type: 'iframe',
-            mainClass: 'mfp-fade',
-            removalDelay: 160,
-            preloader: false,
-            fixedContentPos: false
-        });
-    } catch(err) {
+    $('.popup-youtube, .popup-vimeo, .popup-gmaps, .popup-video').magnificPopup({
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+    });
+} catch(err) {
 
-    }
+}
 
 /*-------------------------------------------------*/
 /* = Lightbox
