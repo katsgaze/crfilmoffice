@@ -1,4 +1,4 @@
-var $ = jQuery.noConflict();
+﻿var $ = jQuery.noConflict();
 
 (function ($) {
 "use strict";
