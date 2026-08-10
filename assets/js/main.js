@@ -1,4 +1,4 @@
-﻿var $ = jQuery.noConflict();
+var $ = jQuery.noConflict();
 
 (function ($) {
 "use strict";
@@ -39,7 +39,10 @@ $(window).on("scroll", function () {
 /* = Menu
 /*-------------------------------------------------*/
 $(".menu-button").on("click", function () {
-    $("#menu").removeClass("animated fadeOutRight").toggleClass("open");
+    $("#menu")
+        .removeClass("animated fadeOutRight")
+        .toggleClass("open");
+
     $("#menu").addClass("animated slideInRight");
 });
 
@@ -76,7 +79,6 @@ if ($.fn.flexslider && $(".flexslider").length) {
 /*-------------------------------------------------*/
 /* = Isotope
 /*-------------------------------------------------*/
-
 try {
     $('.localizaciones-items').each(function() {
 
@@ -84,26 +86,10 @@ try {
 
         $mainContainer.imagesLoaded(function() {
 
-            /* 
-             * El enlace <a> es la tarjeta real de la galería.
-             * Le damos una clase específica para que Isotope
-             * posicione el elemento completo, no el .one-item interior.
-             */
-            $mainContainer.children('a').addClass('grid-item');
+            var $container = $mainContainer.isotope({
+                itemSelector: '.one-item'
+            });
 
-            var options = {
-                itemSelector: '.grid-item',
-                layoutMode: 'masonry',
-                masonry: {
-                    columnWidth: '.grid-item',
-                    gutter: 30
-                },
-                percentPosition: true
-            };
-
-            var $container = $mainContainer.isotope(options);
-
-            /* Filtros: solo se aplican a la galería que corresponde */
             $mainContainer.closest('#localizaciones').find('.filters').on('click', 'li', function() {
                 var filterValue = $(this).attr('data-filter');
 
@@ -112,7 +98,6 @@ try {
                 });
             });
 
-            /* Estado visual de los filtros */
             $mainContainer.closest('#localizaciones').find('.filters').each(function(i, buttonGroup) {
                 var $buttonGroup = $(buttonGroup);
 
@@ -125,90 +110,124 @@ try {
         });
 
     });
-
 } catch(err) {
 
 }
 
+/*-------------------------------------------------*/
+/* = Portfolio with border
+/*-------------------------------------------------*/
+try {
+    $('.localizaciones-items.border').each(function() {
+
+        var $mainContainerBorder = $(this);
+
+        $mainContainerBorder.imagesLoaded(function() {
+
+            var $container = $mainContainerBorder.isotope({
+                itemSelector: '.one-item',
+                layoutMode: 'masonry',
+                masonry: {
+                    columnWidth: '.one-item',
+                    gutter: 30
+                },
+                percentPosition: true
+            });
+
+            $mainContainerBorder.closest('#localizaciones').find('.filters').on('click', 'li', function() {
+                var filterValue = $(this).attr('data-filter');
+
+                $container.isotope({
+                    filter: filterValue
+                });
+            });
+
+            $mainContainerBorder.closest('#localizaciones').find('.filters').each(function(i, buttonGroup) {
+                var $buttonGroup = $(buttonGroup);
+
+                $buttonGroup.on('click', 'li', function() {
+                    $buttonGroup.find('.is-checked').removeClass('is-checked');
+                    $(this).addClass('is-checked');
+                });
+            });
+
+        });
+
+    });
+} catch(err) {
+
+}
 
 /*-------------------------------------------------*/
 /* = Blog masonry
 /*-------------------------------------------------*/
-
 try {
-    var $blogContainer = $('.masonry-grid');
 
-    $blogContainer.imagesLoaded(function() {
+    var $blogContainer = $(".masonry-grid");
+
+    $blogContainer.imagesLoaded(function () {
+
         $blogContainer.isotope({
-            itemSelector: '.masonry-item',
-            layoutMode: 'masonry'
+            itemSelector: ".masonry-item",
+            layoutMode: "masonry"
         });
+
     });
 
-} catch(err) {
+} catch (err) {
 
 }
 
 /*-------------------------------------------------*/
-/* =  Magnific popup
-/*-------------------------------------------------*/
-try {
-    $('.localizaciones-items').each(function() { // the containers for all your galleries
-        $(this).magnificPopup({
-            delegate: '.lightbox',
-            type: 'image',
-            gallery: {
-                enabled:true
-            },
-            callbacks:{
-                beforeOpen:function(){
-                    $("body").css({"margin-right":"-17px"})
-                },
-                beforeClose:function() {
-                    $("body").css({"margin-right":"0"});
-                }
-            },		
-        });
-    });
-				
-    $('.popup-youtube, .popup-vimeo, .popup-gmaps, .popup-video').magnificPopup({
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-        fixedContentPos: false
-    });
-} catch(err) {
-
-}
-
-/*-------------------------------------------------*/
-/* = Lightbox
+/* = Magnific Popup
 /*-------------------------------------------------*/
 if ($.fn.magnificPopup) {
+
     $(".localizaciones-items").each(function () {
+
         $(this).magnificPopup({
+
             delegate: ".lightbox",
+
             type: "image",
+
             gallery: {
                 enabled: true
             },
+
             callbacks: {
+
                 beforeOpen: function () {
                     $("body").css("margin-right", "-17px");
                 },
+
                 beforeClose: function () {
                     $("body").css("margin-right", "0");
                 }
+
             }
+
         });
+
     });
+
+    $(".popup-youtube, .popup-vimeo, .popup-gmaps, .popup-video").magnificPopup({
+
+        type: "iframe",
+        mainClass: "mfp-fade",
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+
+    });
+
 }
 
 /*-------------------------------------------------*/
 /* = YouTube lazy load
 /*-------------------------------------------------*/
 $(".youtube-lazy-play").on("click", function () {
+
     var $button = $(this);
     var $video = $button.closest(".youtube-lazy");
     var videoId = $video.attr("data-youtube-id");
@@ -218,39 +237,68 @@ $(".youtube-lazy-play").on("click", function () {
     }
 
     var $iframe = $("<iframe>", {
+
         class: "youtube-lazy-frame",
-        src: "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(videoId) + "?autoplay=1&rel=0",
-        title: "Vídeo de YouTube",
-        allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+
+        src:
+            "https://www.youtube-nocookie.com/embed/" +
+            encodeURIComponent(videoId) +
+            "?autoplay=1&rel=0",
+
+        title: "V�deo de YouTube",
+
+        allow:
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+
         allowfullscreen: true,
+
         referrerpolicy: "strict-origin-when-cross-origin"
+
     });
 
     $video.empty().append($iframe);
+
 });
 
 /*-------------------------------------------------*/
 /* = Sponsor carousel (home)
 /*-------------------------------------------------*/
 if ($.fn.owlCarousel && $(".sponsor-carousel").length) {
+
     $(".sponsor-carousel").owlCarousel({
+
         loop: true,
         autoplay: true,
         dots: false,
         autoplayTimeout: 3000,
         responsiveClass: true,
+
         responsive: {
-            0: { items: 2 },
-            600: { items: 2 },
-            1000: { items: 4, loop: true }
+
+            0: {
+                items: 2
+            },
+
+            600: {
+                items: 2
+            },
+
+            1000: {
+                items: 4,
+                loop: true
+            }
+
         }
+
     });
+
 }
 
 /*-------------------------------------------------*/
 /* = Scroll between sections
 /*-------------------------------------------------*/
 $("nav ul li a[href^='#'], footer a[href^='#']").on("click", function (event) {
+
     var target = $(this).attr("href");
     var $target = $(target);
 
@@ -261,8 +309,11 @@ $("nav ul li a[href^='#'], footer a[href^='#']").on("click", function (event) {
     event.preventDefault();
 
     $("html, body").stop().animate({
+
         scrollTop: $target.offset().top - 70
+
     }, 850);
+
 });
 
 })(jQuery);
