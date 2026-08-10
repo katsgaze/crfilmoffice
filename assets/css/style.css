@@ -2864,33 +2864,28 @@ div.controls {
 /*-------------------------------------------------*/
 /* = Mobile layout corrections
 /*-------------------------------------------------*/
-@media screen and (max-width: 767px) {
 
-  /* Rodar en Ciudad Real */
+@media screen and (max-width: 767px) {
   #main-wrap #bottom-wrap #ciudadreal .row-title {
     max-width: none;
     min-height: 0;
-    width: 100%;
     margin: 0 auto;
-    padding: 0 15px 25px;
+    padding: 15px 15px 25px;
     text-align: center;
-    box-sizing: border-box;
   }
 
   #main-wrap #bottom-wrap #ciudadreal .row-title h2 {
     margin-bottom: 0;
+    padding-bottom: 0 !important;
   }
 
   #main-wrap #bottom-wrap #ciudadreal .row-title p {
     position: static;
-    width: 100%;
-    max-width: 100%;
     padding: 20px 0 0;
     margin: 0;
-    box-sizing: border-box;
   }
+}
 
-  /* Evita que los textos largos generen desbordamientos */
   #main-wrap #bottom-wrap #ciudadreal p,
   #main-wrap #bottom-wrap #ciudadreal h2 {
     max-width: 100%;
