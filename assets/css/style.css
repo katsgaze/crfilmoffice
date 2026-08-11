@@ -9,7 +9,8 @@
 6.Parallax
 7.Pages
 8.Sidebar
-9.OWL
+9.contacto Form
+10.OWL
 11.Animations
 12.Loader
 -------------------------------------------------*/
@@ -3240,7 +3241,94 @@ aside.right-sidebar .widget-wrapper {
 }
 
 /*-------------------------------------------------*/
-/* =  9.OWL
+/* =  9.contacto Form
+/*-------------------------------------------------*/
+.contacto-form #contacto-form .form-field {
+  outline: inherit;
+  border: none;
+  border-bottom: 1px solid #555555;
+  width: 100%;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+}
+
+.contacto-form #contacto-form .form-field:focus {
+  border-bottom: 1px solid #333;
+}
+
+.contacto-form #contacto-form ::-webkit-input-placeholder {
+  font-family: "Inconsolata";
+  color: #555555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.contacto-form #contacto-form :-moz-placeholder {
+  font-family: "Inconsolata";
+  color: #555555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.contacto-form #contacto-form ::-moz-placeholder {
+  font-family: "Inconsolata";
+  color: #555555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.contacto-form #contacto-form :-ms-input-placeholder {
+  font-family: "Inconsolata";
+  color: #555555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.contacto-form #contacto-form #submit-contacto {
+  padding: 0;
+  padding-right: 30px;
+  padding-left: 30px;
+  height: 55px;
+  line-height: 53px;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 2px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  display: inline-block;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  margin-bottom: 35px;
+  background: transparent;
+  transition: all .4s ease;
+}
+
+.contacto-form #contacto-form #submit-contacto:hover {
+  background-color: #0CB1C1;
+  color: white;
+  transition: all .4s ease;
+}
+
+@media screen and (max-width: 480px) {
+  .contacto-form #contacto-form #submit-contacto {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.contacto-form #contacto-form #msg {
+  color: #0CB1C1;
+}
+
+/*-------------------------------------------------*/
+/* =  10.OWL
 /*-------------------------------------------------*/
 .owl-theme .owl-controls {
   margin-top: 10px;
