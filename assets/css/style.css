@@ -14,6 +14,7 @@
 11.Post/page content styles (used by current content pages)
 12.Production directory button
 13.YouTube lazy load
+14.Search
 -------------------------------------------------*/
 /*-------------------------------------------------
 =  Import Google Fonts */
@@ -1524,9 +1525,8 @@ div.controls {
 }
 
 #main-wrap #bottom-wrap #localizaciones .filters {
-  margin-bottom: 50px;
-  padding-left: 15px;
-  display: block;
+  padding-left: 0;
+  margin: 0;
 }
 
 #main-wrap #bottom-wrap #localizaciones .filters li {
@@ -1540,13 +1540,6 @@ div.controls {
   margin-right: 25px;
   position: relative;
   color: #333;
-}
-
-@media screen and (max-width: 410px) {
-  #main-wrap #bottom-wrap #localizaciones .filters li {
-    font-size: 26px;
-    line-height: 31px;
-  }
 }
 
 #main-wrap #bottom-wrap #localizaciones .filters li:after {
@@ -1570,6 +1563,37 @@ div.controls {
 
 #main-wrap #bottom-wrap #localizaciones .filters .is-checked:after {
   border-bottom: none;
+}
+
+/* Corrección de alineación y tipografía para versión móvil */
+@media screen and (max-width: 767px) {
+  .localizaciones-filter-bar.flex-line {
+    justify-content: center;
+    flex-direction: column; /* Apila filtros arriba y buscador abajo */
+    gap: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  ul.inline-filters {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  #main-wrap #bottom-wrap #localizaciones .filters li {
+    font-size: 18px; /* Tamaño ajustado para que quepan las 3 palabras sin desbordar */
+    line-height: 22px;
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+
+  .search-wrap {
+    width: 100%;
+    max-width: 320px; /* Ancho cómodo y centrado para el input en móvil */
+  }
 }
 
 #main-wrap #bottom-wrap #localizaciones .localizaciones-items {
@@ -2939,4 +2963,74 @@ div.controls {
     top: calc(50% + 47px);
     font-size: 9px;
   }
+}
+
+/*-------------------------------------------------*/
+/* =  14.Search
+/*-------------------------------------------------*/
+
+.localizaciones-filter-bar.flex-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+ul.inline-filters {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+ul.inline-filters li {
+    margin-right: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.search-wrap {
+    position: relative;
+    width: 280px;
+    margin: 0;
+}
+
+.form-control-search {
+    width: 100%;
+    padding: 8px 16px 8px 38px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    color: #222;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control-search:focus {
+    border-color: #000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-wrap .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+@media (max-width: 767px) {
+    .localizaciones-filter-bar.flex-line {
+        justify-content: center;
+    }
+    .search-wrap {
+        width: 100%;
+    }
 }
