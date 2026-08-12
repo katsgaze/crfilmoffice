@@ -1168,8 +1168,8 @@ div.controls {
 
 @media screen and (max-width: 767px) {
   #main-wrap #menu .menu-holder {
-    overflow: auto;
-    padding: 80px 20px 40px 20px !important;
+    overflow-y: auto !important;
+    padding: 80px 15px 40px 15px !important;
   }
 }
 
@@ -1234,6 +1234,27 @@ div.controls {
   line-height: 36px;
   opacity: 1;
   transition: opacity .4s ease;
+}
+
+@media screen and (max-width: 767px) {
+  #main-wrap #menu .menu-holder ul.sub-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 5px 0 !important;
+    max-height: none !important;
+  }
+
+  #main-wrap #menu .menu-holder ul.sub-menu li {
+    display: block !important;
+    padding: 4px 0 !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    width: 100% !important;
+    text-align: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 }
 
 #main-wrap #menu .menu-holder ul.sub-menu li a {
@@ -1586,11 +1607,10 @@ div.controls {
   border-bottom: none;
 }
 
-/* Corrección de alineación y tipografía para versión móvil */
 @media screen and (max-width: 767px) {
   .localizaciones-filter-bar.flex-line {
     justify-content: center;
-    flex-direction: column; /* Apila filtros arriba y buscador abajo */
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 30px;
     width: 100%;
@@ -1605,7 +1625,7 @@ div.controls {
   }
 
   #main-wrap #bottom-wrap #localizaciones .filters li {
-    font-size: 18px; /* Tamaño ajustado para que quepan las 3 palabras sin desbordar */
+    font-size: 18px;
     line-height: 22px;
     margin-right: 12px;
     margin-left: 12px;
@@ -1613,7 +1633,7 @@ div.controls {
 
   .search-wrap {
     width: 100%;
-    max-width: 320px; /* Ancho cómodo y centrado para el input en móvil */
+    max-width: 320px;
   }
 }
 
