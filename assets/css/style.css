@@ -3045,10 +3045,36 @@ ul.inline-filters li {
 }
 
 @media (max-width: 767px) {
-    .localizaciones-filter-bar.flex-line {
-        justify-content: center;
+    #main-wrap #bottom-wrap #localizaciones .localizaciones-header h2 {
+        font-size: 26px !important;
+        line-height: 32px !important;
+        letter-spacing: 1px !important;
+        word-break: normal !important;
     }
+
+    .localizaciones-filter-bar.flex-line {
+        flex-direction: column !important;
+        justify-content: center !important;
+        gap: 15px !important;
+        margin-bottom: 30px !important;
+    }
+
+    ul.inline-filters {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    #main-wrap #bottom-wrap #localizaciones .filters li {
+        font-size: 16px !important;
+        line-height: 20px !important;
+        margin-right: 10px !important;
+        margin-left: 10px !important;
+    }
+
     .search-wrap {
-        width: 100%;
+        width: 100% !important;
+        max-width: 320px !important;
     }
 }
