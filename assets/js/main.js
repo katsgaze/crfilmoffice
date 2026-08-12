@@ -75,65 +75,85 @@ var $ = jQuery.noConflict();
     /* =  Isotope
     /*-------------------------------------------------*/
     try {
-        var $mainContainer=$('.localizaciones-items');
-        $mainContainer.imagesLoaded( function(){
+        var $mainContainerBorder = $('.localizaciones-items.border');
+        $mainContainerBorder.imagesLoaded(function() {
 
-            var $container=$('.localizaciones-items').isotope({itemSelector:'.one-item'});
+            var qsRegex;
+            var buttonFilter;
 
-            $('#localizaciones .filters').on('click','li',function(){
-                var filterValue=$(this).attr('data-filter');$container.isotope({
-                    filter:filterValue});
-            });
-            $('#localizaciones .filters').each(function(i,buttonGroup){
-                var $buttonGroup=$(buttonGroup);
-                $buttonGroup.on('click','li',function(){
-                    $buttonGroup.find('.is-checked').removeClass('is-checked');
-                    $(this).addClass('is-checked');
-                });
-            });
-            
-        });
-    } catch(err) {
-
-    }
-    //portfolio with border
-    try {
-        var $mainContainerBorder=$('.localizaciones-items.border');
-        $mainContainerBorder.imagesLoaded( function(){
-
-            var $container=$('.localizaciones-items.border').isotope({
-                itemSelector:'.one-item',
+            var $container = $('.localizaciones-items.border').isotope({
+                itemSelector: '.one-item',
                 layoutMode: 'masonry',
                 masonry: {
                     columnWidth: '.one-item',
                     gutter: 30
                 },
-                percentPosition: true
+                percentPosition: true,
+                filter: function() {
+                    var $this = $(this);
+                    // Obtiene el alt de la imagen dentro de la tarjeta o el texto del enlace padre
+                    var altText = $this.find('img').attr('alt') || '';
+                    var hrefText = $this.parent('a').attr('href') || '';
+                    var fullText = altText + ' ' + hrefText;
+
+                    var searchResult = qsRegex ? fullText.match(qsRegex) : true;
+                    var buttonResult = buttonFilter ? $this.is(buttonFilter) : true;
+
+                    return searchResult && buttonResult;
+                }
             });
 
-            $('#localizaciones .filters').on('click','li',function(){
-                var filterValue=$(this).attr('data-filter');$container.isotope({
-                    filter:filterValue});
+            // Evento para botones de filtro (Todas, Interiores, Exteriores)
+            $('#localizaciones .filters').on('click', 'li', function() {
+                buttonFilter = $(this).attr('data-filter');
+                if (buttonFilter === '*') buttonFilter = false;
+                $container.isotope();
             });
-            $('#localizaciones .filters').each(function(i,buttonGroup){
-                var $buttonGroup=$(buttonGroup);
-                $buttonGroup.on('click','li',function(){
+
+            // Resaltado de botón activo
+            $('#localizaciones .filters').each(function(i, buttonGroup) {
+                var $buttonGroup = $(buttonGroup);
+                $buttonGroup.on('click', 'li', function() {
                     $buttonGroup.find('.is-checked').removeClass('is-checked');
                     $(this).addClass('is-checked');
                 });
             });
-            
+
+            // Evento para el buscador de texto
+            var $quicksearch = $('#quicksearch').keyup(debounce(function() {
+                qsRegex = new RegExp($quicksearch.val(), 'gi');
+                $container.isotope();
+            }, 200));
+
         });
-    } catch(err) {
+    } catch (err) {
 
     }
-    //blog masonry
+
+    // Función auxiliar debounce
+    function debounce(fn, threshold) {
+        var timeout;
+        threshold = threshold || 100;
+        return function delayed() {
+            var args = arguments;
+            var __this = this;
+            function delayed2() {
+                fn.apply(__this, args);
+            }
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+            timeout = setTimeout(delayed2, threshold);
+        };
+    }
+
+    // Blog masonry
     try {
         var $blogContainer = $('.masonry-grid');
-        $blogContainer.imagesLoaded( function(){
-            $blogContainer.isotope({itemSelector: '.masonry-item', layoutMode: 'masonry'});
+        $blogContainer.imagesLoaded(function() {
+            $blogContainer.isotope({ itemSelector: '.masonry-item', layoutMode: 'masonry' });
         });
-    } catch(err) {
+    } catch (err) {
 
     }
     /*-------------------------------------------------*/
