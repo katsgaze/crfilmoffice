@@ -24,12 +24,12 @@
         <meta property="og:url" content="https://crfilmoffice.com/">
         <meta property="og:title" content="Ciudad Real Film Office">
         <meta property="og:description" content="Información y orientación para rodajes en Ciudad Real">
-        <meta property="og:image" content="https://crfilmoffice.com/assets/img/logo.png">
+        <meta property="og:image" content="https://crfilmoffice.com/assets/img/crfilmoffice.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="https://crfilmoffice.com/">
         <meta name="twitter:title" content="Ciudad Real Film Office">
         <meta name="twitter:description" content="Información y orientación para rodajes en Ciudad Real">
-        <meta name="twitter:image" content="https://crfilmoffice.com/assets/img/logo.png">
+        <meta name="twitter:image" content="https://crfilmoffice.com/assets/img/crfilmoffice.png">
     </head>
     <body>
        
@@ -300,14 +300,19 @@
                     	<h2 class="big font-white text-center">LOCALIZACIONES</h2>
                     </div>
 
-                    <div class="container">
-                        <div class="row">
-                            <ul class="col-md-12 filters">
-                                <li data-filter="*" class="is-checked">Todas</li>
-                                <li data-filter=".interiores">Interiores</li>
-                                <li data-filter=".exteriores">Exteriores</li>
-                            </ul>
-                        </div>
+			<div class="container">
+			    <div class="row localizaciones-filter-bar flex-line">
+			        <ul class="filters inline-filters">
+			            <li data-filter="*" class="is-checked">Todas</li>
+			            <li data-filter=".interiores">Interiores</li>
+			            <li data-filter=".exteriores">Exteriores</li>
+			        </ul>
+
+			        <div class="search-wrap">
+			            <input type="text" id="quicksearch" placeholder="Buscar Museo, Plaza, Parque..." class="form-control-search">
+			            <i class="icon ion-search search-icon"></i>
+			        </div>
+			    </div>
                         <div class="localizaciones-items equal-grid border three-columns">
                             <a href="alarcos.html">
                                 <div class="one-item interiores exteriores">
