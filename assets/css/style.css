@@ -3068,27 +3068,36 @@ ul.inline-filters li {
 
     .localizaciones-filter-bar.flex-line {
         flex-direction: column !important;
+        align-items: center !important;
         justify-content: center !important;
-        gap: 15px !important;
+        gap: 20px !important;
         margin-bottom: 30px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     ul.inline-filters {
         display: flex !important;
+        flex-wrap: wrap !important;
         justify-content: center !important;
+        align-items: center !important;
         width: 100% !important;
+        max-width: 100% !important;
         padding: 0 !important;
+        margin: 0 !important;
     }
 
-    #main-wrap #bottom-wrap #localizaciones .filters li {
-        font-size: 16px !important;
-        line-height: 20px !important;
-        margin-right: 10px !important;
-        margin-left: 10px !important;
+    #main-wrap #bottom-wrap #localizaciones .filters li,
+    ul.inline-filters li {
+        font-size: 15px !important;
+        line-height: 22px !important;
+        margin: 0 8px 10px 8px !important;
+        display: inline-block !important;
     }
 
     .search-wrap {
         width: 100% !important;
-        max-width: 320px !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
     }
 }
