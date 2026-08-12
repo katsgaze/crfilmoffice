@@ -72,6 +72,23 @@ var $ = jQuery.noConflict();
 
     }
     /*-------------------------------------------------*/
+    /* =  Instafeed
+    /*-------------------------------------------------*/
+    var settings = {"accessToken":"", "userId":""}; //Add your access token and the instagram user id to show the profile. AccessToken to test 393402381.1677ed0.d26e74eb93b04d9b8b729cdf097c3f55
+    try {
+        var userFeed = new Instafeed({
+            get: 'user',
+            userId: settings.userId,
+            accessToken: settings.accessToken,
+            resolution: 'standard_resolution',
+            limit: 6,
+            template: '<li class="col-sm-2 col-xs-4"><a href="{{link}}" target="_blank" class="image"><img src="{{image}}" /></a></li>'
+        });
+        userFeed.run();
+    } catch(err) {
+
+    }
+    /*-------------------------------------------------*/
     /* =  Isotope
     /*-------------------------------------------------*/
     try {
@@ -168,7 +185,139 @@ var $ = jQuery.noConflict();
     } catch(err) {
 
     }
+    /*-------------------------------------------------*/
+    /* =  Count increment
+    /*-------------------------------------------------*/
+    try {
+        $('#counters').appear(function() {
+            $('#counters .statistic span').countTo({
+                speed: 4000,
+                refreshInterval: 60,
+                formatter: function (value, options) {
+                    return value.toFixed(options.decimals);
+                }
+            });
+        });
+    } catch(err) {
 
+    }
+    /*-------------------------------------------------*/
+    /* =  Contact Form
+    /*-------------------------------------------------*/
+    var submitContact = $('#submit-contact'),
+        message = $('#msg');
+
+    submitContact.on('click', function(e){
+        e.preventDefault();
+
+        var $this = $(this);
+
+        $.ajax({
+            type: "POST",
+            url: 'contact.php',
+            dataType: 'json',
+            cache: false,
+            data: $('#contact-form').serialize(),
+            success: function(data) {
+
+                if(data.info !== 'error'){
+                    $this.parents('form').find('input[type=text],textarea,select').filter(':visible').val('');
+                    message.hide().removeClass('success').removeClass('error').addClass('success').html(data.msg).fadeIn('slow').delay(5000).fadeOut('slow');
+                } else {
+                    message.hide().removeClass('success').removeClass('error').addClass('error').html(data.msg).fadeIn('slow').delay(5000).fadeOut('slow');
+                }
+            }
+        });
+    });
+
+})(jQuery);
+
+$(document).ready(function($) {
+    "use strict";
+    
+    /*-------------------------------------------------*/
+    /* =  Carousel
+    /*-------------------------------------------------*/
+    try {
+        $(".carousel-news").owlCarousel({
+            loop:true,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            items:1,
+            autoplay:true,
+            autoplayHoverPause:true
+        });
+
+        $(".testimonials-carousel").owlCarousel({
+            loop:true,
+            animateOut: 'fadeOut',
+            animateIn: 'flipInX',
+            items:1,
+            autoplay:true,
+            autoplayHoverPause:true
+        });
+
+        $(".image-carousel").owlCarousel({
+            loop:true,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            items:1,
+            autoplay:true,
+            autoplayHoverPause:true,
+            dots:false
+        });
+
+        $(".team-carousel").owlCarousel({
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:3,
+                    loop:false
+                }
+            }
+        });
+        $(".sponsor-carousel").owlCarousel({
+            loop:true,
+            autoplay:true,
+            dots:false,
+            autoplayTimeout:3000,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:2
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:4,
+                    loop:true
+                }
+            }
+        });
+    } catch(err) {
+
+    }
+    /*-------------------------------------------------*/
+    /* =  Skills
+    /*-------------------------------------------------*/
+    try {
+        $('#skills').appear(function() {
+            jQuery('.skill-list li span').each(function(){
+                jQuery(this).animate({
+                    width:jQuery(this).attr('data-percent')
+                },2000);
+            });
+        });
+    } catch(err) {
+
+    }
     /*-------------------------------------------------*/
     /* =  Parallax
     /*-------------------------------------------------*/
