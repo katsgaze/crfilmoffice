@@ -1508,16 +1508,16 @@ div.controls {
 
 @media (max-width: 767px) {
   #main-wrap #bottom-wrap #localizaciones .localizaciones-header {
-    padding: 25px 10px; /* Reducimos el padding lateral para ganar espacio */
+    padding: 25px 10px;
     margin-bottom: 30px;
     width: 100%;
     box-sizing: border-box;
   }
 
   #main-wrap #bottom-wrap #localizaciones .localizaciones-header h2 {
-    font-size: 28px !important; /* Ajusta el tamaño del texto para que no desborde */
-    letter-spacing: 2px; /* Reduce la separación de letras si estuviera muy alta */
-    word-wrap: break-word; /* Asegura que no rompa el ancho total */
+    font-size: 28px !important;
+    letter-spacing: 2px;
+    word-wrap: break-word;
     overflow-wrap: break-word;
     padding: 10px 0;
   }
