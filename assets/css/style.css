@@ -1169,7 +1169,7 @@ div.controls {
 @media screen and (max-width: 767px) {
   #main-wrap #menu .menu-holder {
     overflow: auto;
-    padding: 100px 50px;
+    padding: 80px 20px 40px 20px !important;
   }
 }
 
@@ -1189,10 +1189,12 @@ div.controls {
   list-style: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   #main-wrap #menu .menu-holder ul li {
-    font-size: 20px;
-    line-height: 31px;
+    font-size: 18px !important;
+    line-height: 26px !important;
+    padding: 10px 0 !important;
+    letter-spacing: 1px !important;
   }
 }
 
@@ -2317,7 +2319,19 @@ div.controls {
   padding: 0 10px;
 }
 
-#error-page #text-error-page .container .content h1, #error-page #text-error-page .container .content h2, #error-page #text-error-page .container .content h3 {
+@media screen and (max-width: 767px) {
+  #error-page #text-error-page .container .content {
+    padding-bottom: 60px !important;
+  }
+
+  #error-page #text-error-page .container .content a.btn {
+    margin-bottom: 40px !important;
+  }
+}
+
+#error-page #text-error-page .container .content h1, 
+#error-page #text-error-page .container .content h2, 
+#error-page #text-error-page .container .content h3 {
   color: white;
   margin-bottom: 0;
 }
