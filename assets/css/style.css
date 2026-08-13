@@ -1152,6 +1152,7 @@ div.controls {
   z-index: 998;
   visibility: hidden;
   opacity: 0;
+  pointer-events: none;
 }
 
 #main-wrap #menu .menu-holder {
