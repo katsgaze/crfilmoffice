@@ -1294,6 +1294,7 @@ div.controls {
   visibility: visible;
   opacity: 1;
   overflow: auto;
+  pointer-events: auto;
 }
 
 #main-wrap header.fixed-top {
