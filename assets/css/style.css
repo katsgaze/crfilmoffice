@@ -608,6 +608,21 @@ iframe.embed-responsive-item {
   text-decoration: none !important;
 }
 
+.panel-group .panel-title a,
+.panel-group .panel-title a.collapsed,
+.panel-group a.panel-title,
+.panel-group a.panel-title.collapsed {
+    color: #333333 !important;
+    transition: color 0.3s ease !important;
+}
+
+.panel-group .panel-title a:hover,
+.panel-group .panel-title a:focus,
+.panel-group a.panel-title:hover,
+.panel-group a.panel-title:focus {
+    color: #0CB1C1 !important;
+}
+
 .alert {
   text-shadow: none;
   box-shadow: none;
