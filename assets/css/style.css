@@ -595,6 +595,19 @@ iframe.embed-responsive-item {
   letter-spacing: 1px;
 }
 
+.panel-group .panel-heading {
+  padding: 0 !important;
+}
+
+.panel-group .panel-title a {
+  display: block !important;
+  width: 100% !important;
+  padding: 15px 20px !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
 .alert {
   text-shadow: none;
   box-shadow: none;
